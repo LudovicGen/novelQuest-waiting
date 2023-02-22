@@ -83,6 +83,42 @@
   height: 1em;
 }
 
+        .timerWrapper {
+          background-color: rgba(0, 0, 0, 0.8);
+          padding: 2rem;
+          border: solid 2px white;
+          border-radius: 5px;
+          z-index: 2;
+        }
+
+        .timerInner {
+          color: #333;
+          display: flex;
+          border: solid 2px #fff;
+          padding: 2rem;
+          background-color: rgba(256, 256, 256, 0.8);
+          border-radius: 5px;
+        }
+
+        .timerSegment {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .divider,
+        .time {
+          font-size: 2rem;
+        }
+
+        .diver {
+          padding: 0 2rem;
+        }
+
+        .label {
+          font-size: 1rem;
+        }
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

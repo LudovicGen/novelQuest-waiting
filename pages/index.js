@@ -1,25 +1,92 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Image from "next/image";
+import logo from "../public/icon.png";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [partyTime, setPartyTime] = useState(false);
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const target = new Date("09/01/2023 23:59:59");
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = target.getTime() - now.getTime();
+
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+      setDays(d);
+
+      const h = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      setHours(h);
+
+      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      setMinutes(m);
+
+      const s = Math.floor((difference % (1000 * 60)) / 1000);
+      setSeconds(s);
+
+      if (d <= 0 && h <= 0 && m <= 0 && s <= 0) {
+        setPartyTime(true);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>NovelQuest - Présentation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Bienvenue sur <a href="https://nextjs.org">NovelQuest!</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
+          <Image
+            alt="Logo application novelQuest"
+            src={logo}
+            width={"100%"}
+            height={500}
+            priority
+          />
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <div className={styles.timerWrapper}>
+            <div className={styles.timerInner}>
+              <div className={styles.timerSegment}>
+                <span className={styles.time}>{days}</span>
+                <span className={styles.label}>Jours</span>
+              </div>
+              <span className={styles.divider}>:</span>
+              <div className={styles.timerSegment}>
+                <span className={styles.time}>{hours}</span>
+                <span className={styles.label}>Heures</span>
+              </div>
+              <span className={styles.divider}>:</span>
+              <div className={styles.timerSegment}>
+                <span className={styles.time}>{minutes}</span>
+                <span className={styles.label}>Minutes</span>
+              </div>
+              <span className={styles.divider}>:</span>
+              <div className={styles.timerSegment}>
+                <span className={styles.time}>{seconds}</span>
+                <span className={styles.label}>Seconds</span>
+              </div>
+            </div>
+          </div>
+          {/* <a href="https://nextjs.org/docs" className={styles.card}>
             <h3>Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
@@ -45,20 +112,11 @@ export default function Home() {
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
-          </a>
+          </a> */}
         </div>
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
+      <footer>Powered by NovelQuest company</footer>
 
       <style jsx>{`
         main {
@@ -111,5 +169,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
