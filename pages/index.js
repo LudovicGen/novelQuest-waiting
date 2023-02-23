@@ -48,41 +48,45 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-          Bienvenue sur <a href="https://nextjs.org">NovelQuest!</a>
-        </h1>
+        <video autoPlay muted loop className={styles.myVideo}>
+          <source src="bg.mp4" type="video/mp4"></source>
+          Your browser does not support HTML5 video.
+        </video>
+        <div className={styles.content}>
+          <h1 className={styles.title}>
+            Bienvenue sur <a href="https://nextjs.org">NovelQuest!</a>
+          </h1>
+          <p className={styles.description}>
+            <Image
+              alt="Logo application novelQuest"
+              src={logo}
+              style={{ width: "100%", height: "auto", maxHeight: "500px" }}
+              priority
+            />
+          </p>
 
-        <p className={styles.description}>
-          <Image
-            alt="Logo application novelQuest"
-            src={logo}
-            width={"100%"}
-            height={500}
-            priority
-          />
-        </p>
-
-        <div className={styles.grid}>
-          <div className={styles.timerWrapper}>
-            <div className={styles.timerInner}>
-              <div className={styles.timerSegment}>
-                <span className={styles.time}>{days}</span>
-                <span className={styles.label}>Jours</span>
-              </div>
-              <span className={styles.divider}>:</span>
-              <div className={styles.timerSegment}>
-                <span className={styles.time}>{hours}</span>
-                <span className={styles.label}>Heures</span>
-              </div>
-              <span className={styles.divider}>:</span>
-              <div className={styles.timerSegment}>
-                <span className={styles.time}>{minutes}</span>
-                <span className={styles.label}>Minutes</span>
-              </div>
-              <span className={styles.divider}>:</span>
-              <div className={styles.timerSegment}>
-                <span className={styles.time}>{seconds}</span>
-                <span className={styles.label}>Seconds</span>
+          <div className={styles.grid}>
+            <div className={styles.timerWrapper}>
+              <div className={styles.timerInner}>
+                <div className={styles.timerSegment}>
+                  <span className={styles.time}>{days}</span>
+                  <span className={styles.label}>Jours</span>
+                </div>
+                <span className={styles.divider}>:</span>
+                <div className={styles.timerSegment}>
+                  <span className={styles.time}>{hours}</span>
+                  <span className={styles.label}>Heures</span>
+                </div>
+                <span className={styles.divider}>:</span>
+                <div className={styles.timerSegment}>
+                  <span className={styles.time}>{minutes}</span>
+                  <span className={styles.label}>Minutes</span>
+                </div>
+                <span className={styles.divider}>:</span>
+                <div className={styles.timerSegment}>
+                  <span className={styles.time}>{seconds}</span>
+                  <span className={styles.label}>Seconds</span>
+                </div>
               </div>
             </div>
           </div>
